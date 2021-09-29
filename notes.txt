@@ -1,0 +1,10 @@
+get into wsl...
+write wsl
+then ~ cd 
+
+cd flask_api
+activate vitual env
+must be on prokect folder
+osurce/venv/bin/activate
+sudo service mongodb start
+python3 server.py
