@@ -1,3 +1,26 @@
+
+
+
+## Initial project configuration
+# Installations
+sudo apt update
+sudo apt install python3
+sudo apt install python3-venv
+sudo apt install python3-pip
+
+# initial configuration
+mkdir flask_api
+cd flask_api
+python3 -m venv venv
+
+
+
+#### view files in windows explorer
+explorer.exe .
+
+###### on every restart
+# get into wsl
+
 get into wsl...
 write wsl
 then ~ cd 
@@ -5,6 +28,8 @@ then ~ cd
 cd flask_api
 activate vitual env
 must be on prokect folder
-osurce/venv/bin/activate
-sudo service mongodb start
+source/venv/bin/activate
+(run database) sudo service mongodb start
 python3 server.py
+
+restart database everytime your computer restarts

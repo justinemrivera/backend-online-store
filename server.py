@@ -121,6 +121,48 @@ def get_cheapest():
        
     return parse_json(cheapest)
 
+@app.route("/api/couponCode", methods=["POST"])
+def save_coupon():
+    coupon = request.get_json()
+    if not "code" in coupon or len( coupon["code"] ) <5:
+        abort(400,"Code is required and should be at least 5 chars long")
+    if not "discount" in coupon or coupon["discount"] <= 0:
+        abort (400,"Discount is required and should be greater than zero")
+    db.couponCodes.insert_one(coupon)
+
+    return parse_json(coupon)
+
+@app.route("/api/couponCode", methods=["GET"])
+def get_coupons():
+    cursor = db.couponCodes.find({})
+    codes = []
+    for code in cursor:
+        codes.append(code) 
+
+    return parse_json(codes)
+
+
+#/api/couponCode/abcde
+@app.route("/api/couponCode/<code>")
+def validate_coupon(code):
+    coupon = db.couponCodes.find_one({"code":code})
+    # find the product with such id
+    # return the product as jsn string
+
+
+    if not coupon:
+        abort(404, "Invalid coupon")
+    return parse_json(coupon)
+
+@app.route("/api/orders", methods=["POST"])
+def save_Order():
+    order = request.get_json()
+    db.orders.insert_one(order)
+
+    return parse_json(order)
+
+
+
 
 @app.route("/api/test/loadData")
 def load_data():
